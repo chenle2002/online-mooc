@@ -8,13 +8,6 @@ spring:
 
     gateway:
       routes:
-        - id: sort_route
-          uri: lb://service-sort
-          predicates:
-            - Path=/api/sort/**
-          filters:
-            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
-
         - id: course_route
           uri: lb://service-course
           predicates:
@@ -26,6 +19,13 @@ spring:
           uri: lb://service-member
           predicates:
             - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: sort_route
+          uri: lb://service-sort
+          predicates:
+            - Path=/api/sort/**
           filters:
             - RewritePath=/api/(?<segment>/?.*),/$\{segment}
 
