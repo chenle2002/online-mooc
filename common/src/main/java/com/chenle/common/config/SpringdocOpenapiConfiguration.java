@@ -1,4 +1,4 @@
-package com.chenle.ossservice.config;
+package com.chenle.common.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;

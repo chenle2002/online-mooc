@@ -1,4 +1,4 @@
-package com.chenle.sortservice.config;
+package com.chenle.common.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
