@@ -28,7 +28,7 @@ import java.util.Map;
  * @email chenle@mail.ynu.edu.cn
  * @date 2022-11-22 16:14:53
  */
-@Tag(name="课程分类信息管理")
+@Tag(name="课程分类信息管理接口")
 @RestController
 @RequestMapping("sort/sort")
 public class SortController {

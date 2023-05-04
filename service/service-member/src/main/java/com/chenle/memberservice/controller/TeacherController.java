@@ -29,7 +29,7 @@ import java.util.Map;
  * @email chenle@mail.ynu.edu.cn
  * @date 2022-11-22 16:14:53
  */
-@Tag(name="人员管理")
+@Tag(name="教师管理接口")
 @RestController
 @RequestMapping("member/teacher")
 public class TeacherController {

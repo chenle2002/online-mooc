@@ -28,7 +28,7 @@ import java.util.Map;
  * @date 2022-11-22 16:14:53
  */
 @RestController
-@Tag(name = "用户管理")
+@Tag(name = "用户管理接口")
 @RequestMapping("member/user")
 public class UserController {
     @Autowired

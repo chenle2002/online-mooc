@@ -27,7 +27,7 @@ import java.util.Map;
  * @email chenle@mail.ynu.edu.cn
  * @date 2022-12-01 14:48:41
  */
-@Tag(name="轮播图数据管理")
+@Tag(name="轮播图数据管理接口")
 @RestController
 @RequestMapping("sort/carousel")
 public class CarouselController {

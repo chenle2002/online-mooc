@@ -33,7 +33,7 @@ import java.util.Map;
  * @date 2022-11-25 09:34:22
  */
 @Slf4j
-@Tag(name="阿里云OSS服务")
+@Tag(name="阿里云OSS服务接口")
 @RestController
 @RequestMapping("oss/courserdes")
 public class OssServiceController {

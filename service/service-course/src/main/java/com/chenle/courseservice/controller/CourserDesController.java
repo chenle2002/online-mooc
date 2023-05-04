@@ -32,7 +32,7 @@ import java.util.Map;
  * @date 2022-11-25 09:34:22
  */
 @Slf4j
-@Tag(name = "课程章节信息管理")
+@Tag(name = "课程章节信息管理接口")
 @RestController
 @RequestMapping("course/courserdes")
 public class CourserDesController {

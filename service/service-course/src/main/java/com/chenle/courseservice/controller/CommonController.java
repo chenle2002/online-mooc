@@ -30,7 +30,7 @@ import java.util.Map;
  * @date 2022-11-22 16:14:53
  */
 @RestController
-@Tag(name = "评论信息管理")
+@Tag(name = "评论信息管理接口")
 @RequestMapping("course/common")
 public class CommonController {
     @Autowired
