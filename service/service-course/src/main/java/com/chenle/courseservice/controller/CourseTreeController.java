@@ -18,6 +18,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -156,6 +158,7 @@ public class CourseTreeController {
     })
     @ApiResponse(description = "返回操作状态码", content = @Content(mediaType = "application/json"
             , schema = @Schema(implementation = R.class)))
+    @CacheEvict(value = "courseTree", allEntries=true)
     @RequestMapping(value = "/save", method= {RequestMethod.GET, RequestMethod.POST})
     public R save(@RequestBody CourseTreeEntity courseTree){
         courseTreeService.save(courseTree);
@@ -169,6 +172,7 @@ public class CourseTreeController {
     @Operation(summary ="修改课程树信息")
     @ApiResponse(description = "返回操作状态码", content = @Content(mediaType = "application/json"
             , schema = @Schema(implementation = R.class)))
+    @CacheEvict(value = "courseTree", allEntries=true)
     @RequestMapping(value = "/update", method= {RequestMethod.GET, RequestMethod.POST})
     public R update(@RequestBody CourseTreeEntity courseTree){
         courseTreeService.updateById(courseTree);
@@ -182,6 +186,7 @@ public class CourseTreeController {
     @Operation(summary ="删除课程树信息")
     @ApiResponse(description = "返回操作状态码", content = @Content(mediaType = "application/json"
             , schema = @Schema(implementation = R.class)))
+    @CacheEvict(value = "courseTree", allEntries=true)
     @RequestMapping(value = "/delete", method= {RequestMethod.GET, RequestMethod.POST})
     public R delete(@RequestBody Integer[] courseIds){
         courseTreeService.removeByIds(Arrays.asList(courseIds));

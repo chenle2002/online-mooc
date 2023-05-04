@@ -14,6 +14,7 @@ import com.chenle.courseservice.service.CourseTreeService;
 import com.chenle.courseservice.service.CourserDesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +40,7 @@ public class CourseTreeServiceImpl extends ServiceImpl<CourseTreeDao, CourseTree
     }
 
     @Override
+    @Cacheable(value = "courseTree",keyGenerator = "keyGenerator")
     public List<CourseTreeEntity> listWithTree() {
         //1.查出所有分类
         List<CourseTreeEntity> entities = baseMapper.selectList(null);

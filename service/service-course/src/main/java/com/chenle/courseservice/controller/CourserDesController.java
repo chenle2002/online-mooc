@@ -2,7 +2,6 @@ package com.chenle.courseservice.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.chenle.common.entity.UserEntity;
 import com.chenle.common.util.PageUtils;
 import com.chenle.common.util.R;
 import com.chenle.common.vo.CourseDesResVo;
@@ -20,6 +19,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -154,6 +155,7 @@ public class CourserDesController {
     })
     @ApiResponse(description = "返回操作状态码", content = @Content(mediaType = "application/json"
             , schema = @Schema(implementation = R.class)))
+    @CacheEvict(value = "courseTree", allEntries=true)
     @RequestMapping(value = "/save", method= {RequestMethod.GET, RequestMethod.POST})
     public R save(@RequestBody CourserDesEntity courserDes) {
         courserDesService.saveall(courserDes);
@@ -167,6 +169,7 @@ public class CourserDesController {
     @Operation(summary ="修改课程章节信息")
     @ApiResponse(description = "返回操作状态码", content = @Content(mediaType = "application/json"
             , schema = @Schema(implementation = R.class)))
+    @CacheEvict(value = "courseTree", allEntries=true)
     @RequestMapping(value = "/update", method= {RequestMethod.GET, RequestMethod.POST})
     public R update(@RequestBody CourserDesEntity courserDes) {
         courserDesService.updateByIdWithTree(courserDes);
@@ -180,6 +183,7 @@ public class CourserDesController {
     @Operation(summary ="删除课程章节信息")
     @ApiResponse(description = "返回操作状态码", content = @Content(mediaType = "application/json"
             , schema = @Schema(implementation = R.class)))
+    @CacheEvict(value = "courseTree", allEntries=true)
     @RequestMapping(value = "/delete", method= {RequestMethod.GET, RequestMethod.POST})
     public R delete(@RequestBody Integer[] ids) {
         courserDesService.removeByIdsAndtree(ids);
