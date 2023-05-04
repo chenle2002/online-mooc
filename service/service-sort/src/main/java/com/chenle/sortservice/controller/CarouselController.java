@@ -5,6 +5,11 @@ import com.chenle.common.util.PageUtils;
 import com.chenle.common.util.R;
 import com.chenle.sortservice.entity.CarouselEntity;
 import com.chenle.sortservice.service.CarouselService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +27,7 @@ import java.util.Map;
  * @email chenle@mail.ynu.edu.cn
  * @date 2022-12-01 14:48:41
  */
+@Tag(name="轮播图数据管理")
 @RestController
 @RequestMapping("sort/carousel")
 public class CarouselController {
@@ -31,7 +37,9 @@ public class CarouselController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @Operation(summary ="获取用户主页显示的轮播图数据")
+    @ApiResponse(description = "返回轮播图数据并封装为R", content = @Content(mediaType = "application/json", schema = @Schema(implementation = R.class)))
+    @RequestMapping(value = "/list", method= {RequestMethod.GET, RequestMethod.POST})
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = carouselService.queryPage(params);
 
@@ -39,44 +47,44 @@ public class CarouselController {
     }
 
 
-    /**
-     * 信息
-     */
-    @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Integer id){
-		CarouselEntity carousel = carouselService.getById(id);
-
-        return R.ok().put("carousel", carousel);
-    }
-
-    /**
-     * 保存
-     */
-    @RequestMapping("/save")
-    public R save(@RequestBody CarouselEntity carousel){
-		carouselService.save(carousel);
-
-        return R.ok();
-    }
-
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    public R update(@RequestBody CarouselEntity carousel){
-		carouselService.updateById(carousel);
-
-        return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Integer[] ids){
-		carouselService.removeByIds(Arrays.asList(ids));
-
-        return R.ok();
-    }
+//    /**
+//     * 信息
+//     */
+//    @RequestMapping("/info/{id}")
+//    public R info(@PathVariable("id") Integer id){
+//		CarouselEntity carousel = carouselService.getById(id);
+//
+//        return R.ok().put("carousel", carousel);
+//    }
+//
+//    /**
+//     * 保存
+//     */
+//    @RequestMapping("/save")
+//    public R save(@RequestBody CarouselEntity carousel){
+//		carouselService.save(carousel);
+//
+//        return R.ok();
+//    }
+//
+//    /**
+//     * 修改
+//     */
+//    @RequestMapping("/update")
+//    public R update(@RequestBody CarouselEntity carousel){
+//		carouselService.updateById(carousel);
+//
+//        return R.ok();
+//    }
+//
+//    /**
+//     * 删除
+//     */
+//    @RequestMapping("/delete")
+//    public R delete(@RequestBody Integer[] ids){
+//		carouselService.removeByIds(Arrays.asList(ids));
+//
+//        return R.ok();
+//    }
 
 }

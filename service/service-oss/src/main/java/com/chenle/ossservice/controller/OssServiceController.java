@@ -8,10 +8,16 @@ import com.aliyun.oss.model.MatchMode;
 import com.aliyun.oss.model.PolicyConditions;
 
 import com.chenle.common.util.R;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -27,6 +33,7 @@ import java.util.Map;
  * @date 2022-11-25 09:34:22
  */
 @Slf4j
+@Tag(name="阿里云OSS服务")
 @RestController
 @RequestMapping("oss/courserdes")
 public class OssServiceController {
@@ -46,7 +53,9 @@ public class OssServiceController {
     @Value("${spring.cloud.alicloud.secret-key}")
     private String accessKey;
 
-    @RequestMapping("/pdf/policy")
+    @Operation(summary ="获取pdf的加密信息")
+    @ApiResponse(description = "返回加密信息并封装为R", content = @Content(mediaType = "application/json", schema = @Schema(implementation = R.class)))
+    @RequestMapping(value = "/pdf/policy", method= {RequestMethod.GET, RequestMethod.POST})
     public R pdfpolicy() {
         String host = "https://" + bucket + "." + endpoint;
 
@@ -82,7 +91,9 @@ public class OssServiceController {
         return R.ok().put("data", respMap);
     }
 
-    @RequestMapping("/image/policy")
+    @Operation(summary ="获取image的加密信息")
+    @ApiResponse(description = "返回加密信息并封装为R", content = @Content(mediaType = "application/json", schema = @Schema(implementation = R.class)))
+    @RequestMapping(value = "/image/policy", method= {RequestMethod.GET, RequestMethod.POST})
     public R imagepolicy() {
 
 
@@ -120,7 +131,10 @@ public class OssServiceController {
         return R.ok().put("data", respMap);
     }
 
-    @RequestMapping("/video/policy")
+
+    @Operation(summary ="返回video加密信息")
+    @ApiResponse(description = "返回加密信息并封装为R", content = @Content(mediaType = "application/json", schema = @Schema(implementation = R.class)))
+    @RequestMapping(value = "/video/policy", method= {RequestMethod.GET, RequestMethod.POST})
     public R videopolicy() {
 
 
