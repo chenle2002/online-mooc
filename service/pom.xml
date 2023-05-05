@@ -17,6 +17,7 @@
         <module>service-sort</module>
         <module>service-course</module>
         <module>service-member</module>
+        <module>service-sms</module>
     </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -77,12 +78,12 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.2.RELEASE</version>
             </plugin>
         </plugins>
     </build>
